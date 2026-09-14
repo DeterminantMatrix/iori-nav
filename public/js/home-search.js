@@ -116,7 +116,7 @@
     Home.updateHeading = updateHeading;
 
     if (engineOptions.length > 0) {
-      currentSearchEngine = localStorage.getItem('search_engine') || 'local';
+      currentSearchEngine = localStorage.getItem('search_engine') || 'google';
       if (currentSearchEngine === 'bing') {
         currentSearchEngine = 'github';
         localStorage.setItem('search_engine', currentSearchEngine);
