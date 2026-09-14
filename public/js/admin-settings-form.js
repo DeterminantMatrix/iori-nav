@@ -55,6 +55,8 @@
       homeHitokotoSizeInput: document.getElementById('homeHitokotoSize'),
       homeHitokotoColorInput: document.getElementById('homeHitokotoColor'),
       homeHitokotoColorPicker: document.getElementById('homeHitokotoColorPicker'),
+      quickPin1Select: document.getElementById('quickPin1'),
+      quickPin2Select: document.getElementById('quickPin2'),
       homeTitleFontInput: document.getElementById('homeTitleFont'),
       homeSubtitleFontInput: document.getElementById('homeSubtitleFont'),
       homeStatsFontInput: document.getElementById('homeStatsFont'),
@@ -117,6 +119,38 @@
     if (pickerInput && /^#[0-9A-F]{6}$/i.test(value)) {
       pickerInput.value = value;
     }
+  }
+
+  // 快捷栏固定书签：拉取书签列表填充两个下拉框，并恢复已保存的选择
+  function populateQuickPinOptions(selects, desiredValues = []) {
+    if (!Array.isArray(selects) || selects.length === 0) return;
+    if (typeof fetch !== 'function') return;
+    fetch('/api/config?page=1&pageSize=500')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.code !== 200 || !Array.isArray(data.data)) return;
+        const escapeOption = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+        }[ch]));
+        selects.forEach((select, index) => {
+          const desired = desiredValues[index] || select.dataset?.currentValue || '';
+          select.innerHTML = '<option value="">未设置</option>'
+            + data.data.map((site) => `<option value="${escapeOption(site.id)}">${escapeOption(site.name)}</option>`).join('');
+          if (desired) select.value = desired;
+        });
+      })
+      .catch(() => { /* 书签列表加载失败时保留「未设置」选项 */ });
+  }
+
+  function setQuickPinSelections(refs, pinsValue) {
+    const ids = pinsValue.split(',').map((v) => v.trim()).filter(Boolean);
+    const desired = [ids[0] || '', ids[1] || ''];
+    const selects = [refs.quickPin1Select, refs.quickPin2Select].filter(Boolean);
+    selects.forEach((select, index) => {
+      if (select.dataset) select.dataset.currentValue = desired[index];
+      select.value = desired[index];
+    });
+    populateQuickPinOptions(selects, desired);
   }
 
   function setRangeValue(rangeInput, valueLabel, value) {
@@ -245,6 +279,10 @@
     currentSettings.home_hide_hitokoto = !!refs.hideHitokotoSwitch?.checked;
     currentSettings.home_hitokoto_size = refs.homeHitokotoSizeInput?.value.trim() || '';
     currentSettings.home_hitokoto_color = refs.homeHitokotoColorInput?.value.trim() || '';
+    currentSettings.home_quick_pins = [refs.quickPin1Select?.value, refs.quickPin2Select?.value]
+      .map((v) => (v || '').trim())
+      .filter(Boolean)
+      .join(',');
     currentSettings.home_title_font = refs.homeTitleFontInput?.value.trim() || '';
     currentSettings.home_subtitle_font = refs.homeSubtitleFontInput?.value.trim() || '';
     currentSettings.home_stats_font = refs.homeStatsFontInput?.value.trim() || '';
@@ -408,6 +446,7 @@
     setChecked(refs.hideHitokotoSwitch, currentSettings.home_hide_hitokoto);
     setValue(refs.homeHitokotoSizeInput, currentSettings.home_hitokoto_size || '14');
     setColorInputs(refs.homeHitokotoColorInput, refs.homeHitokotoColorPicker, currentSettings.home_hitokoto_color || '#6b7280');
+    setQuickPinSelections(refs, String(currentSettings.home_quick_pins || ''));
     setValue(refs.homeTitleFontInput, currentSettings.home_title_font || '');
     setValue(refs.homeSubtitleFontInput, currentSettings.home_subtitle_font || '');
     setValue(refs.homeStatsFontInput, currentSettings.home_stats_font || '');

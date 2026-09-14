@@ -213,6 +213,12 @@ export async function onRequest(context) {
     ? allSites.filter(site => targetCategoryIds.includes(site.catelog_id))
     : allSites;
 
+  // 快捷栏：解析「固定书签」设置（仅保留当前访客可见的书签，私密书签不会泄露）
+  const quickPinIds = String(S.home_quick_pins || '').split(',').map(v => v.trim()).filter(Boolean);
+  const quickPinSites = quickPinIds
+    .map(id => allSites.find(site => String(site.id) === id))
+    .filter(Boolean);
+
   // === 7. 壁纸处理 ===
   // 自定义壁纸优先；留空时使用当前桌面卡片风格的默认壁纸
   const resolvedWallpaperUrl = resolveWallpaperUrl(S.layout_custom_wallpaper, S.layout_card_style);
@@ -349,6 +355,7 @@ export async function onRequest(context) {
           <svg xmlns="http://www.w3.org/2000/svg" class="home-search-icon h-6 w-6 absolute left-4 top-3.5 ${searchIconClass}" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
         </div>
       </div>
+      <div id="quickStrip" class="quick-strip hidden" aria-label="快捷书签"></div>
       ${categoryPosition === 'below_search' ? horizontalCategoryNavHtml : ''}
     </div>`;
 
@@ -543,9 +550,10 @@ export async function onRequest(context) {
   if (!html.includes(mainJsMarker)) {
     console.error('Card hydration injection skipped: main.js marker not found in template');
   } else {
+    const safeQuickPinsJson = JSON.stringify(quickPinSites).replace(/</g, '\\u003c');
     html = html.replace(
       mainJsMarker,
-      () => `<script>window.IORI_SITES=${safeSitesJson};window.IORI_CARD_CONFIG=${safeCardConfigJson};window.IORI_CARD_CONFIGS=${safeCardConfigsJson};window.IORI_LAYOUT_CONFIG=${safeLayoutConfigJson};</script>\n  ${mainJsMarker}`
+      () => `<script>window.IORI_SITES=${safeSitesJson};window.IORI_CARD_CONFIG=${safeCardConfigJson};window.IORI_CARD_CONFIGS=${safeCardConfigsJson};window.IORI_LAYOUT_CONFIG=${safeLayoutConfigJson};window.IORI_QUICK_PINS=${safeQuickPinsJson};</script>\n  ${mainJsMarker}`
     );
   }
 

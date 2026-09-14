@@ -36,6 +36,7 @@ export const SETTINGS_SCHEMA = {
     home_remember_last_category: { default: false, type: 'bool' },
     home_category_position: { default: 'below_search', type: 'string' },
     home_category_flow: { default: 'single_line', type: 'string' },
+    home_quick_pins: { default: '', type: 'string' },
     layout_grid_cols: { default: '4', type: 'string' },
     layout_custom_wallpaper: { default: '', type: 'string' },
     layout_menu_layout: { default: 'horizontal', type: 'string' },

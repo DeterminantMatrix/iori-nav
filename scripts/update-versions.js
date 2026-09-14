@@ -27,6 +27,7 @@ const HTML_FILES = {
     { file: 'public/js/home-cards.js', pattern: /\/js\/home-cards\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/home-submit.js', pattern: /\/js\/home-submit\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/home-search.js', pattern: /\/js\/home-search\.js\?v=[a-zA-Z0-9]+/ },
+    { file: 'public/js/home-quick-strip.js', pattern: /\/js\/home-quick-strip\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/home-category-nav.js', pattern: /\/js\/home-category-nav\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/main.js', pattern: /\/js\/main\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/favicon.svg', pattern: /\/favicon\.svg\?v=[a-zA-Z0-9]+/ },

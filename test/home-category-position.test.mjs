@@ -201,15 +201,17 @@ test('style three keeps the standard search engine set and order', async () => {
     { key: 'home_search_engine_enabled', value: 'true' },
   ]);
 
+  // 站内搜索排在最后，Google 默认首选
   const localIndex = html.indexOf('data-engine="local"');
   const googleIndex = html.indexOf('data-engine="google"');
   const baiduIndex = html.indexOf('data-engine="baidu"');
   const githubIndex = html.indexOf('data-engine="github"');
 
-  assert.ok(localIndex > -1);
-  assert.ok(localIndex < googleIndex);
+  assert.ok(googleIndex > -1);
   assert.ok(googleIndex < baiduIndex);
   assert.ok(baiduIndex < githubIndex);
+  assert.ok(githubIndex < localIndex);
+  assert.match(html, /search-engine-option active" data-engine="google"><span>Google<\/span>/);
   assert.match(html, /data-engine="local"><span>站内<\/span>/);
   assert.match(html, /data-engine="google"><span>Google<\/span>/);
   assert.match(html, /data-engine="baidu"><span>Baidu<\/span>/);
