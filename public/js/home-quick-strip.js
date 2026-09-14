@@ -86,7 +86,12 @@
       .slice(0, MAX_RECENTS);
 
     const parts = [];
-    pins.slice(0, MAX_PINS).forEach((site) => parts.push(itemHtml(site, 'is-pin')));
+    const pinItems = pins.slice(0, MAX_PINS);
+    pinItems.forEach((site) => parts.push(itemHtml(site, 'is-pin')));
+    // 固定与最近之间加竖线分隔
+    if (pinItems.length > 0 && recentSites.length > 0) {
+      parts.push('<span class="quick-strip-divider" aria-hidden="true"></span>');
+    }
     recentSites.forEach((site) => parts.push(itemHtml(site, 'is-recent')));
 
     if (parts.length === 0) {

@@ -2088,3 +2088,43 @@ html.dark .quick-strip-item:hover { background-color: rgba(31, 41, 55, 0.95); }
   .quick-strip { gap: 0.4rem; padding: 0 0.75rem; }
   .quick-strip-item { max-width: 7.5rem; font-size: 0.8rem; padding: 0.3rem 0.65rem; }
 }
+
+/* ============ 快捷栏：固定/最近分隔线 ============ */
+.quick-strip-divider {
+  flex: none;
+  width: 1px;
+  height: 1.15rem;
+  margin: 0 0.25rem;
+  background: currentColor;
+  opacity: 0.28;
+}
+
+/* ============ 页面打开入场动画（参考 mm-design plate-in） ============ */
+@keyframes iori-plate-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+.home-search-shell,
+.quick-strip:not(.hidden),
+#horizontalCategoryNav,
+.home-stats-row {
+  animation: iori-plate-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.home-search-shell { animation-delay: 0.04s; }
+.quick-strip:not(.hidden) { animation-delay: 0.12s; }
+#horizontalCategoryNav { animation-delay: 0.2s; }
+.home-stats-row { animation-delay: 0.28s; }
+@media (max-width: 549px) {
+  .home-search-shell { animation-delay: 0.12s; }
+  .quick-strip:not(.hidden) { animation-delay: 0.2s; }
+  #horizontalCategoryNav { animation-delay: 0.28s; }
+  .home-stats-row { animation-delay: 0.34s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-search-shell,
+  .quick-strip:not(.hidden),
+  #horizontalCategoryNav,
+  .home-stats-row {
+    animation: none;
+  }
+}
