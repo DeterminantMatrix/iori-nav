@@ -379,9 +379,9 @@ export async function onRequest(context) {
         </a>`;
     }
 
-    headerContent = `
-      <div class="min-[550px]:hidden">${verticalHeaderContent}</div>
-      <div class="hidden min-[550px]:block">${horizontalHeaderContent}</div>`;
+    // 移动端（<550px）同样使用横向页头：verticalHeaderContent 不含分类导航，
+    // 会导致「分类位置=搜索框下方」等设置在小屏失效
+    headerContent = horizontalHeaderContent;
   }
 
   const topRightActionsHtml = `<div class="fixed top-4 right-4 z-50 flex items-center gap-3">${themeIconHtml}${adminIconHtml}</div>`;
