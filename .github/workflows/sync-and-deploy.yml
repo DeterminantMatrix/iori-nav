@@ -1,0 +1,44 @@
+name: Sync upstream and deploy
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Merge upstream changes
+        id: sync
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          result=$(gh api repos/${{ github.repository }}/merge-upstream -X POST -f branch=master)
+          merge_type=$(echo "$result" | jq -r '.merge_type // "unknown"')
+          echo "merge_type=$merge_type" >> "$GITHUB_OUTPUT"
+          echo "Upstream sync result: $merge_type"
+
+      - name: Deploy to Cloudflare Pages
+        if: steps.sync.outputs.merge_type != 'none'
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "::warning::CLOUDFLARE_API_TOKEN secret not set, skip deploy. Add it in repo Settings -> Secrets -> Actions."
+            exit 0
+          fi
+          npx wrangler@4 pages deploy
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "Sync or deploy failed - check the logs above."

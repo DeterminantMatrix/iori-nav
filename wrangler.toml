@@ -1,0 +1,29 @@
+name = "iori-nav-app"
+compatibility_date = "2025-09-06"
+pages_build_output_dir = "public"
+
+[[d1_databases]]
+binding = "NAV_DB"
+database_name = "book"
+database_id = "3a13e22d-abbc-4625-b6c1-d30210aa5be1"
+
+[[kv_namespaces]]
+binding = "NAV_AUTH"
+id = "bdfe8c963e7240eca89702e0f7b21ff3"
+
+[vars]
+ENABLE_PUBLIC_SUBMISSION = false
+SITE_NAME = "灰色轨迹"
+SITE_DESCRIPTION = "一个优雅、快速、易于部署的书签（网址）收藏与分享平台，完全基于 Cloudflare 全家桶构建"
+FOOTER_TEXT = "曾梦想仗剑走天涯"
+ICON_API = "https://faviconsnap.com/api/favicon?url="
+AI_REQUEST_DELAY = "1500"
+
+# Optional: configure both values to enable Cloudflare Turnstile locally.
+# Do not commit real secret keys.
+TURNSTILE_SITE_KEY = ""
+TURNSTILE_SECRET_KEY = ""
+
+# Optional: enable if you bind Cloudflare Workers AI for description generation.
+[ai]
+binding = "AI"
