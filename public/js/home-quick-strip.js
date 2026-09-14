@@ -104,6 +104,13 @@
   }
 
   function init() {
+    // MMW 黑金主题：摘掉统计标题的内联颜色（内联 !important 无法被样式表覆盖）
+    if (document.body.classList.contains('mmw-black')) {
+      document.querySelectorAll('.home-stats-row h2[style*="color"]').forEach((el) => {
+        el.style.removeProperty('color');
+      });
+    }
+
     // 事件委托：卡片由 SSR / 前端切换分类时动态渲染，统一在 document 上捕获
     document.addEventListener('click', (event) => {
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;

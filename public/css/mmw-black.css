@@ -1,0 +1,184 @@
+/* ============================================================
+   MMW 黑金主题（参考 mmwx-probe / mm-design）
+   作用域：body.mmw-black。纯覆盖层，不改上游规则。
+   ============================================================ */
+
+body.mmw-black {
+  --mm-void: #15130f;
+  --mm-void-2: #1b1914;
+  --mm-void-deep: #0e0d0a;
+  --mm-ink: #ddd6c8;
+  --mm-ink-soft: #ccc5b4;
+  --mm-ink-dim: #b6ae9c;
+  --mm-ink-faint: #8a8271;
+  --mm-line: rgba(221, 214, 200, 0.1);
+  --mm-line-strong: rgba(221, 214, 200, 0.2);
+  --mm-gold: #c4a56a;
+  --mm-gold-dim: rgba(196, 165, 106, 0.14);
+  --mm-wash: rgba(213, 208, 196, 0.05);
+  --mm-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  --mm-serif: "Instrument Serif", "Songti SC", "Noto Serif SC", "STSong", "SimSun", serif;
+  --mm-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  background:
+    radial-gradient(120% 90% at 50% -10%, #201c14 0%, rgba(32, 28, 20, 0) 60%),
+    radial-gradient(90% 70% at 85% 110%, #191712 0%, rgba(25, 23, 18, 0) 55%),
+    var(--mm-void) !important;
+  color: var(--mm-ink);
+}
+
+/* 盖掉自定义壁纸，让暗色底浮出来 */
+body.mmw-black #fixed-background { display: none !important; }
+body.mmw-black header { background: transparent !important; box-shadow: none !important; }
+
+/* ---------- 顶部操作按钮 ---------- */
+body.mmw-black .top-action-icon,
+body.mmw-black #sidebarToggle {
+  background: rgba(27, 25, 20, 0.9) !important;
+  border: 1px solid var(--mm-line) !important;
+  border-radius: 2px !important;
+  color: var(--mm-ink) !important;
+  box-shadow: none !important;
+}
+body.mmw-black .top-action-icon:hover,
+body.mmw-black #sidebarToggle:hover { border-color: var(--mm-gold) !important; color: var(--mm-gold) !important; }
+
+/* ---------- 搜索引擎切换：等宽字 kicker 风格 ---------- */
+body.mmw-black .search-engine-wrapper { font-family: var(--mm-mono); }
+body.mmw-black .search-engine-option span {
+  font-family: var(--mm-mono) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  color: var(--mm-ink-dim) !important;
+}
+body.mmw-black .search-engine-option.active span,
+body.mmw-black .search-engine-option:hover span { color: var(--mm-gold) !important; }
+
+/* ---------- 搜索框：暗色石板 ---------- */
+body.mmw-black .search-input-target {
+  background: rgba(21, 19, 15, 0.82) !important;
+  border: 1px solid var(--mm-line-strong) !important;
+  border-radius: 3px !important;
+  color: var(--mm-ink) !important;
+  box-shadow: var(--mm-shadow) !important;
+  backdrop-filter: none !important;
+  caret-color: var(--mm-gold) !important;
+}
+body.mmw-black .search-input-target::placeholder { color: var(--mm-ink-faint) !important; }
+body.mmw-black .search-input-target:focus {
+  border-color: var(--mm-gold) !important;
+  box-shadow: 0 0 0 1px var(--mm-gold-dim), var(--mm-shadow) !important;
+}
+body.mmw-black .home-search-icon { color: var(--mm-ink-dim) !important; }
+
+/* ---------- 快捷栏 ---------- */
+body.mmw-black .quick-strip-item {
+  background: rgba(27, 25, 20, 0.85) !important;
+  border: 1px solid var(--mm-line) !important;
+  border-radius: 2px !important;
+  color: var(--mm-ink-soft) !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+body.mmw-black .quick-strip-item:hover {
+  background: var(--mm-void-2) !important;
+  border-color: var(--mm-gold) !important;
+  color: var(--mm-ink) !important;
+}
+body.mmw-black .quick-strip-item.is-pin .quick-strip-name { color: var(--mm-gold) !important; }
+body.mmw-black .quick-strip-divider { background: var(--mm-ink-faint) !important; opacity: 0.55 !important; }
+
+/* ---------- 分类标签：金框石板按钮 ---------- */
+body.mmw-black #horizontalCategoryNav .nav-btn,
+body.mmw-black #horizontalCategoryNav .nav-btn.inactive,
+body.mmw-black #horizontalCategoryNav .nav-btn.active {
+  background: rgba(27, 25, 20, 0.85) !important;
+  background-color: rgba(27, 25, 20, 0.85) !important;
+  border: 1px solid var(--mm-line) !important;
+  border-radius: 2px !important;
+  color: var(--mm-ink-dim) !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.mmw-black #horizontalCategoryNav .nav-btn:hover {
+  border-color: var(--mm-line-strong) !important;
+  color: var(--mm-ink) !important;
+}
+body.mmw-black #horizontalCategoryNav .nav-btn.active,
+body.mmw-black #horizontalCategoryNav .nav-btn.nav-item-active {
+  border-color: rgba(196, 165, 106, 0.5) !important;
+  background: var(--mm-gold-dim) !important;
+  background-color: var(--mm-gold-dim) !important;
+  color: var(--mm-gold) !important;
+}
+
+/* ---------- 统计行标题：衬线 ---------- */
+body.mmw-black .home-stats-row h2 {
+  color: var(--mm-ink) !important;
+  font-family: var(--mm-serif) !important;
+  font-size: 1.5rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em;
+}
+body.mmw-black .home-stats-row h2::after {
+  content: "";
+  display: block;
+  width: 2.6rem;
+  height: 1px;
+  margin-top: 0.5rem;
+  background: var(--mm-gold);
+  opacity: 0.75;
+}
+
+/* ---------- 书签卡片：石板 + 金线悬停 ---------- */
+body.mmw-black .site-card {
+  background: rgba(27, 25, 20, 0.92) !important;
+  background-color: rgba(27, 25, 20, 0.92) !important;
+  border: 1px solid var(--mm-line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+body.mmw-black .site-card:hover {
+  border-color: rgba(196, 165, 106, 0.55) !important;
+  box-shadow: 0 18px 44px -24px rgba(0, 0, 0, 0.85) !important;
+}
+body.mmw-black .site-card h3 {
+  color: var(--mm-ink) !important;
+  font-family: var(--mm-serif) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em;
+}
+body.mmw-black .site-card p,
+body.mmw-black .site-card .preview-desc { color: var(--mm-ink-dim) !important; }
+body.mmw-black .site-card .site-card-content a,
+body.mmw-black .site-card a[class*="text-"] { color: var(--mm-ink-faint) !important; }
+body.mmw-black .site-card .card-catelog-badge,
+body.mmw-black .site-card [class*="catelog"] {
+  background: var(--mm-gold-dim) !important;
+  border: 1px solid rgba(196, 165, 106, 0.3) !important;
+  color: var(--mm-gold) !important;
+}
+
+/* ---------- 页脚 ---------- */
+body.mmw-black footer { color: var(--mm-ink-dim) !important; }
+body.mmw-black footer .text-gray-300 { color: var(--mm-ink-faint) !important; }
+body.mmw-black footer a { color: var(--mm-ink-dim) !important; }
+body.mmw-black footer a:hover { color: var(--mm-gold) !important; }
+
+/* ---------- 回到顶部 / 悬浮按钮 ---------- */
+body.mmw-black #backToTop {
+  background: rgba(27, 25, 20, 0.92) !important;
+  border: 1px solid var(--mm-line) !important;
+  border-radius: 2px !important;
+  color: var(--mm-ink) !important;
+}
+
+/* ---------- 移动端微调 ---------- */
+@media (max-width: 549px) {
+  body.mmw-black .quick-strip-item { max-width: 7.5rem; }
+  body.mmw-black .home-stats-row h2 { font-size: 1.3rem !important; }
+}
