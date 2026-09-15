@@ -22,6 +22,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const HTML_FILES = {
   'public/index.html': [
     { file: 'public/css/style.css', pattern: /\/css\/style\.css\?v=[a-zA-Z0-9]+/ },
+    { file: 'public/css/mmw-black.css', pattern: /\/css\/mmw-black\.css\?v=[a-zA-Z0-9]+/ },
     { file: 'public/css/tailwind.min.css', pattern: /\/css\/tailwind\.min\.css\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/home-ui.js', pattern: /\/js\/home-ui\.js\?v=[a-zA-Z0-9]+/ },
     { file: 'public/js/home-cards.js', pattern: /\/js\/home-cards\.js\?v=[a-zA-Z0-9]+/ },
