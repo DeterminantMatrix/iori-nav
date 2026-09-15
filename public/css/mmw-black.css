@@ -19,7 +19,7 @@ body.mmw-black {
   --mm-gold: #8a5e1e;
   --mm-gold-dim: rgba(138, 94, 30, 0.16);
   --mm-wash: rgba(42, 33, 20, 0.06);
-  --mm-plate: rgba(212, 192, 150, 0.6);
+  --mm-plate: rgba(249, 235, 199, 0.85);
   --mm-input-bg: rgba(212, 192, 150, 0.5);
   --mm-chip: #f8f1de;
   --mm-shadow: 0 20px 48px rgba(42, 33, 20, 0.12);
@@ -45,7 +45,7 @@ html.dark body.mmw-black {
   --mm-gold: #c4a56a;
   --mm-gold-dim: rgba(196, 165, 106, 0.14);
   --mm-wash: rgba(213, 208, 196, 0.05);
-  --mm-plate: rgba(27, 25, 20, 0.88);
+  --mm-plate: #1e1a12;
   --mm-input-bg: rgba(21, 19, 15, 0.82);
   --mm-chip: #f2efe7;
   --mm-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
@@ -71,6 +71,7 @@ body.mmw-black .fx-grain {
 html:not(.dark) body.mmw-black .fx-grain {
   mix-blend-mode: multiply;
   filter: none;
+  opacity: 0.13;
 }
 
 /* 盖掉自定义壁纸，让主题底色浮出来 */
@@ -90,7 +91,11 @@ body.mmw-black .top-action-icon:hover,
 body.mmw-black #sidebarToggle:hover { border-color: var(--mm-gold) !important; color: var(--mm-gold) !important; }
 
 /* ---------- 搜索引擎切换：等宽字 kicker 风格 ---------- */
-body.mmw-black .search-engine-wrapper { font-family: var(--mm-mono); }
+body.mmw-black .search-engine-wrapper {
+  font-family: var(--mm-mono);
+  margin-top: 0.55rem !important;
+  margin-bottom: 0 !important;
+}
 body.mmw-black .search-engine-option span {
   font-family: var(--mm-mono) !important;
   font-size: 11px !important;
@@ -184,7 +189,10 @@ body.mmw-black .home-stats-row h2::after {
 }
 
 /* ---------- 书签卡片 ---------- */
-body.mmw-black .site-card {
+body.mmw-black .site-card,
+html body.mmw-black .site-card.frosted-glass-effect,
+html.dark body.mmw-black .site-card.frosted-glass-effect,
+html.dark body.mmw-black .site-card.card-anim-flipIn.frosted-glass-effect {
   background: var(--mm-plate) !important;
   background-color: var(--mm-plate) !important;
   border: 1px solid var(--mm-line) !important;
@@ -193,7 +201,9 @@ body.mmw-black .site-card {
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
-body.mmw-black .site-card:hover {
+body.mmw-black .site-card:hover,
+html body.mmw-black .site-card.frosted-glass-effect:hover,
+html.dark body.mmw-black .site-card.frosted-glass-effect:hover {
   border-color: var(--mm-gold) !important;
   box-shadow: var(--mm-shadow) !important;
 }
@@ -247,4 +257,24 @@ body.mmw-black #backToTop {
 @media (max-width: 549px) {
   body.mmw-black .quick-strip-item { max-width: 7.5rem; }
   body.mmw-black .home-stats-row h2 { font-size: 1.3rem !important; }
+}
+
+/* ---------- 卡片压缩 + 描述分隔线 ---------- */
+body.mmw-black .site-card { padding: 0.75rem 0.85rem !important; }
+body.mmw-black .site-card .site-card-content > a > .flex.items-start { margin-bottom: 0 !important; }
+body.mmw-black .site-card p {
+  border-top: 1px solid var(--mm-line) !important;
+  margin-top: 0.6rem !important;
+  margin-bottom: 0 !important;
+  padding-top: 0.5rem !important;
+}
+
+/* ---------- 卡片网址链接：墨色层次替代蓝色 ---------- */
+html.dark body.mmw-black .site-card .site-card-content .text-primary-600,
+html.dark body.mmw-black .site-card .site-card-content .text-primary-400 {
+  color: var(--mm-ink-faint) !important;
+}
+html:not(.dark) body.mmw-black .site-card .site-card-content .text-primary-600,
+html:not(.dark) body.mmw-black .site-card .site-card-content .text-primary-400 {
+  color: var(--mm-ink-dim) !important;
 }

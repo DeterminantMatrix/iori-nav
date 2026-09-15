@@ -65,12 +65,8 @@
   function itemHtml(site, extraClass) {
     const name = pickField(site, 'name', 'nameHtml') || '?';
     const url = pickField(site, 'url', 'urlHtml') || '#';
-    const logo = pickField(site, 'logo', 'logoUrlHtml');
     const desc = pickField(site, 'desc', 'descHtml');
-    const icon = logo
-      ? `<img src="${logo}" class="quick-strip-icon" alt="" loading="lazy">`
-      : `<span class="quick-strip-icon quick-strip-letter">${escapeHTML(String(name).slice(0, 1).toUpperCase())}</span>`;
-    return `<a class="quick-strip-item ${extraClass}" data-site-id="${escapeHTML(site.id)}" href="${url}" target="_blank" rel="noopener noreferrer" title="${desc || name}">${icon}<span class="quick-strip-name">${name}</span></a>`;
+    return `<a class="quick-strip-item ${extraClass}" data-site-id="${escapeHTML(site.id)}" href="${url}" target="_blank" rel="noopener noreferrer" title="${desc || name}"><span class="quick-strip-name">${name}</span></a>`;
   }
 
   function render() {
