@@ -182,3 +182,18 @@ body.mmw-black #backToTop {
   body.mmw-black .quick-strip-item { max-width: 7.5rem; }
   body.mmw-black .home-stats-row h2 { font-size: 1.3rem !important; }
 }
+
+/* ---------- 图标白底处理：暖纸白芯片，白底图标无缝融入 ---------- */
+body.mmw-black .site-card img[class*="bg-gray-100"],
+body.mmw-black .site-card img[class*="bg-gray-700"] {
+  background: #f2efe7 !important;
+  border-radius: 4px !important;
+  padding: 3px;
+  box-sizing: border-box;
+}
+body.mmw-black .quick-strip-icon {
+  background: #f2efe7 !important;
+  border-radius: 3px !important;
+  padding: 2px;
+  box-sizing: border-box;
+}
