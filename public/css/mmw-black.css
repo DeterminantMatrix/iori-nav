@@ -278,3 +278,10 @@ html:not(.dark) body.mmw-black .site-card .site-card-content .text-primary-600,
 html:not(.dark) body.mmw-black .site-card .site-card-content .text-primary-400 {
   color: var(--mm-ink-dim) !important;
 }
+
+/* ---------- 移动端页头避让悬浮按钮 ---------- */
+@media (max-width: 549px) {
+  body.mmw-black #app-scroll > .main-content > header {
+    padding-top: 4.5rem !important;
+  }
+}

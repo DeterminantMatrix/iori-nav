@@ -539,7 +539,7 @@ export async function onRequest(context) {
   ].filter(Boolean).join(' ');
   html = html.replace(
     '<body class="bg-secondary-50 font-sans text-gray-800">',
-    `<body class="bg-secondary-50 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 relative ${isCustomWallpaper ? 'custom-wallpaper' : ''} ${pageStyleClasses}">${bgLayerHtml}<div id="app-scroll">`
+    `<body class="mmw-black bg-secondary-50 dark:bg-gray-900 font-sans text-gray-800 dark:text-gray-100 relative ${isCustomWallpaper ? 'custom-wallpaper' : ''} ${pageStyleClasses}">${bgLayerHtml}<div class="fx-grain" aria-hidden="true"></div><div id="app-scroll">`
   );
   html = html.replace('</body>', '</div></body>');
 
