@@ -319,23 +319,23 @@ body.mmw-black #horizontalCategoryNav .nav-btn.active::before { background: var(
   scrollbar-color: var(--mm-ink-faint) transparent;
   padding-bottom: 2px;
 }
-.mmw-bottom-cats::-webkit-scrollbar { height: 6px; }
-.mmw-bottom-cats::-webkit-scrollbar-track { background: transparent; }
-.mmw-bottom-cats::-webkit-scrollbar-thumb { background: var(--mm-ink-faint); border-radius: 3px; }
+body.mmw-black #horizontalCategoryNav.iori-cats-scroll::-webkit-scrollbar { height: 6px; }
+body.mmw-black #horizontalCategoryNav.iori-cats-scroll::-webkit-scrollbar-track { background: transparent; }
+body.mmw-black #horizontalCategoryNav.iori-cats-scroll::-webkit-scrollbar-thumb { background: var(--mm-ink-faint); border-radius: 3px; }
 body.mmw-black #horizontalCategoryNav.iori-cats-scroll {
   flex-wrap: nowrap !important;
-  justify-content: flex-start !important;
+  justify-content: safe center !important;
   overflow-x: auto !important;
   overflow-y: hidden !important;
 }
 
 /* 书签滚动区给吸底栏让位 */
-body.mmw-black #app-scroll { padding-bottom: 152px !important; }
+body.mmw-black #app-scroll { padding-bottom: 118px !important; }
 @media (max-width: 549px) {
-  body.mmw-black #app-scroll { padding-bottom: 168px !important; }
+  body.mmw-black #app-scroll { padding-bottom: 118px !important; }
   .mmw-bottom-bar { padding-left: 0.55rem; padding-right: 0.55rem; }
-  .mmw-bottom-cats { scrollbar-width: none; }
-  .mmw-bottom-cats::-webkit-scrollbar { display: none; }
+  body.mmw-black #horizontalCategoryNav.iori-cats-scroll { scrollbar-width: none; margin-bottom: 0.6rem; }
+  body.mmw-black #horizontalCategoryNav.iori-cats-scroll::-webkit-scrollbar { display: none; }
   /* 手机端分组：纯文字紧凑化（去方框/底色） */
   body.mmw-black #horizontalCategoryNav .nav-btn,
   body.mmw-black #horizontalCategoryNav .nav-btn.active,
@@ -369,11 +369,11 @@ body.mmw-black #app-scroll { padding-bottom: 152px !important; }
 .mmw-bottom-search .home-search-shell { max-width: 46rem !important; }
 body.mmw-black .mmw-bottom-search .search-input-target { padding-top: 0.8rem !important; padding-bottom: 0.8rem !important; }
 .mmw-bottom-bar { padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px)); }
-body.mmw-black #app-scroll { padding-bottom: 195px !important; }
+body.mmw-black #app-scroll { padding-bottom: 118px !important; }
 @media (max-width: 549px) {
-  body.mmw-black #app-scroll { padding-bottom: 148px !important; }
+  body.mmw-black #app-scroll { padding-bottom: 118px !important; }
   .mmw-bottom-bar { padding-bottom: calc(0.7rem + env(safe-area-inset-bottom, 0px)); }
-  .mmw-bottom-cats { margin-bottom: 0.35rem; }
+  body.mmw-black #horizontalCategoryNav.iori-cats-scroll { margin-bottom: 0 !important; }
   /* 分组间距紧凑化：去最小宽度、缩小间距与字号 */
   body.mmw-black #horizontalCategoryNav.iori-cats-scroll { gap: 0.15rem !important; }
   body.mmw-black #horizontalCategoryNav .nav-btn,
