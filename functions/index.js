@@ -346,15 +346,13 @@ export async function onRequest(context) {
   const horizontalHeaderContent = `
     <div class="max-w-5xl mx-auto text-center relative z-10 ${themeClass}">
       <div id="quickStrip" class="quick-strip hidden" aria-label="快捷书签"></div>
+      ${horizontalCategoryNavHtml}
     </div>`;
 
-  // 底部固定栏：分组导航（单行横向滚动）+ 搜索框（含引擎切换），常驻屏幕底部
+  // 底部固定栏：搜索框（含引擎切换），常驻屏幕底部
   // （左侧边栏布局除外：该模式下搜索保留在页头，分类走侧边栏）
   const categoryBottomHtml = categoryPosition !== 'left' ? `
     <div class="mmw-bottom-bar">
-      <div class="mmw-bottom-cats">
-        ${horizontalCategoryNavHtml}
-      </div>
       <div class="mmw-bottom-search">
         <div class="home-search-shell relative max-w-xl mx-auto">
           <div class="home-search-field relative">
