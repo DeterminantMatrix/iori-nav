@@ -69,6 +69,7 @@
 
       let placeholder = '搜索书签...';
       switch (engine) {
+        case 'googleai': placeholder = 'Google AI 搜索...'; break;
         case 'google': placeholder = 'Google 搜索...'; break;
         case 'baidu': placeholder = '百度搜索...'; break;
         case 'github': placeholder = 'Github 搜索...'; break;
@@ -116,7 +117,7 @@
     Home.updateHeading = updateHeading;
 
     if (engineOptions.length > 0) {
-      currentSearchEngine = localStorage.getItem('search_engine') || 'google';
+      currentSearchEngine = localStorage.getItem('search_engine') || 'googleai';
       if (currentSearchEngine === 'bing') {
         currentSearchEngine = 'github';
         localStorage.setItem('search_engine', currentSearchEngine);
@@ -158,6 +159,7 @@
           if (query) {
             let url = '';
             switch (currentSearchEngine) {
+              case 'googleai': url = `https://www.google.com/search?q=${encodeURIComponent(query)}&udm=50`; break;
               case 'google': url = `https://www.google.com/search?q=${encodeURIComponent(query)}`; break;
               case 'baidu': url = `https://www.baidu.com/s?wd=${encodeURIComponent(query)}`; break;
               case 'github': url = `https://github.com/search?q=${encodeURIComponent(query)}`; break;
