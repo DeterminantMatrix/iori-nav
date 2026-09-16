@@ -287,7 +287,8 @@ export async function onRequest(context) {
   // === 13. 搜索引擎选项 ===
   const searchEngineOptions = S.home_search_engine_enabled ? `
     <div class="flex justify-center items-center gap-3 mb-4 text-sm select-none search-engine-wrapper">
-        <label class="search-engine-option active" data-engine="google"><span>Google</span></label>
+        <label class="search-engine-option active" data-engine="googleai"><span>AI 搜索</span></label>
+        <label class="search-engine-option" data-engine="google"><span>Google</span></label>
         <label class="search-engine-option" data-engine="baidu"><span>Baidu</span></label>
         <label class="search-engine-option" data-engine="github"><span>Github</span></label>
         <label class="search-engine-option" data-engine="local"><span>站内</span></label>
@@ -348,7 +349,8 @@ export async function onRequest(context) {
     </div>`;
 
   // 底部固定栏：分组导航（单行横向滚动）+ 搜索框（含引擎切换），常驻屏幕底部
-  const categoryBottomHtml = `
+  // （左侧边栏布局除外：该模式下搜索保留在页头，分类走侧边栏）
+  const categoryBottomHtml = categoryPosition !== 'left' ? `
     <div class="mmw-bottom-bar">
       <div class="mmw-bottom-cats">
         ${horizontalCategoryNavHtml}
@@ -362,7 +364,7 @@ export async function onRequest(context) {
           ${searchEngineOptions}
         </div>
       </div>
-    </div>`;
+    </div>` : '';
 
   // === 15. 布局控制 ===
   let sidebarClass = '';
