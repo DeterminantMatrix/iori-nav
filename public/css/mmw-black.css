@@ -363,3 +363,21 @@ body.mmw-black #app-scroll { padding-bottom: 152px !important; }
   body.mmw-black .search-engine-wrapper { margin-top: 0.3rem !important; }
   body.mmw-black .quick-strip { margin: 0.2rem auto 0.9rem; }
 }
+
+/* ---------- 吸底栏呼吸感：分组与搜索拉开、底部留白 ---------- */
+.mmw-bottom-cats { margin-bottom: 0.55rem; }
+.mmw-bottom-bar { padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px)); }
+body.mmw-black #app-scroll { padding-bottom: 175px !important; }
+@media (max-width: 549px) {
+  body.mmw-black #app-scroll { padding-bottom: 148px !important; }
+  .mmw-bottom-bar { padding-bottom: calc(0.7rem + env(safe-area-inset-bottom, 0px)); }
+  .mmw-bottom-cats { margin-bottom: 0.35rem; }
+  /* 分组间距紧凑化：去最小宽度、缩小间距与字号 */
+  body.mmw-black #horizontalCategoryNav.iori-cats-scroll { gap: 0.15rem !important; }
+  body.mmw-black #horizontalCategoryNav .nav-btn,
+  body.mmw-black #horizontalCategoryNav .nav-btn.active {
+    min-width: 0 !important;
+    padding: 0.15rem 0.4rem !important;
+    font-size: 0.82rem !important;
+  }
+}
