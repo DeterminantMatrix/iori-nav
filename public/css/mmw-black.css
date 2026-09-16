@@ -337,7 +337,7 @@ body.mmw-black #horizontalCategoryNav.iori-cats-scroll {
 /* 书签滚动区给吸底栏让位 */
 body.mmw-black #app-scroll { padding-bottom: 152px !important; }
 @media (max-width: 549px) {
-  body.mmw-black #app-scroll { padding-bottom: 138px !important; }
+  body.mmw-black #app-scroll { padding-bottom: 168px !important; }
   .mmw-bottom-bar { padding-left: 0.55rem; padding-right: 0.55rem; }
   .mmw-bottom-cats { scrollbar-width: none; }
   .mmw-bottom-cats::-webkit-scrollbar { display: none; }
@@ -365,9 +365,16 @@ body.mmw-black #app-scroll { padding-bottom: 152px !important; }
 }
 
 /* ---------- 吸底栏呼吸感：分组与搜索拉开、底部留白 ---------- */
-.mmw-bottom-cats { margin-bottom: 0.55rem; }
+.mmw-bottom-cats { margin-bottom: 0; }
+.mmw-bottom-search {
+  border-top: 1px solid var(--mm-line);
+  margin-top: 0.55rem;
+  padding-top: 0.65rem;
+}
+.mmw-bottom-search .home-search-shell { max-width: 46rem !important; }
+body.mmw-black .mmw-bottom-search .search-input-target { padding-top: 0.8rem !important; padding-bottom: 0.8rem !important; }
 .mmw-bottom-bar { padding-bottom: calc(0.9rem + env(safe-area-inset-bottom, 0px)); }
-body.mmw-black #app-scroll { padding-bottom: 175px !important; }
+body.mmw-black #app-scroll { padding-bottom: 195px !important; }
 @media (max-width: 549px) {
   body.mmw-black #app-scroll { padding-bottom: 148px !important; }
   .mmw-bottom-bar { padding-bottom: calc(0.7rem + env(safe-area-inset-bottom, 0px)); }
