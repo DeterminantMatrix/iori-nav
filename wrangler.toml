@@ -1,4 +1,4 @@
-name = "iori-nav-dark"
+name = "iori-nav-app"
 compatibility_date = "2025-09-06"
 pages_build_output_dir = "public"
 
