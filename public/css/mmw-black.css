@@ -285,3 +285,15 @@ html:not(.dark) body.mmw-black .site-card .site-card-content .text-primary-400 {
     padding-top: 4.5rem !important;
   }
 }
+
+/* ---------- 布局：快捷栏置顶、统计标题隐藏 ---------- */
+body.mmw-black .home-stats-row { display: none !important; }
+body.mmw-black .quick-strip { margin: 0.5rem auto 1.4rem; }
+body.mmw-black .quick-strip:not(.hidden) { animation-delay: 0.04s; }
+body.mmw-black .home-search-shell { animation-delay: 0.14s; }
+body.mmw-black #horizontalCategoryNav { animation-delay: 0.2s; }
+
+/* ---------- 分类下划线：金色（覆盖上游蓝色 ::before） ---------- */
+body.mmw-black #horizontalCategoryNav .nav-btn::before { background: var(--mm-gold) !important; }
+body.mmw-black #horizontalCategoryNav .nav-btn:hover::before { background: var(--mm-gold) !important; opacity: 0.65; }
+body.mmw-black #horizontalCategoryNav .nav-btn.active::before { background: var(--mm-gold) !important; }
