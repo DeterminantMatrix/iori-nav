@@ -5,7 +5,7 @@
 - Cloudflare 账号: ztphoenix@hotmail.com (fb7361c6f851ddad05e05324bedb3a45)
 - GitHub Fork: https://github.com/DeterminantMatrix/iori-nav (upstream: jy02739244/iori-nav)
 - 本地目录: D:\WPS SyncDisk\2.Tool\1.VibeCoding\iori-nav
-- 当前分支: master（已合入 mmw-black 主题：MMW 双模式黑金/沙金 UI + 底部吸底布局 + 快捷栏）
+- 当前分支: master（已合入 mmw-black 主题：MMW 双模式 UI + 吸底栏布局：分组行/搜索框常驻底部，分组横向滚动居中）
 
 ## 资源
 - D1 数据库 `book`: 3a13e22d-abbc-4625-b6c1-d30210aa5be1
