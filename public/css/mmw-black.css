@@ -61,7 +61,7 @@ body.mmw-black .fx-grain {
   pointer-events: none;
   position: fixed;
   inset: 0;
-  z-index: 24;
+  z-index: 35;
   opacity: 0.22;
   background: url("/css/mm-noise.png");
   background-size: 140px 140px;
@@ -306,14 +306,9 @@ body.mmw-black #horizontalCategoryNav .nav-btn.active::before { background: var(
   right: 0;
   z-index: 30;
   padding: 0.5rem 0.9rem calc(0.55rem + env(safe-area-inset-bottom, 0px));
-  background: var(--mm-bar-bg);
-  border-top: 1px solid var(--mm-line-strong);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: var(--mm-void) !important;
   animation: iori-plate-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.28s backwards;
 }
-body.mmw-black { --mm-bar-bg: rgba(212, 192, 150, 0.92); }
-html.dark body.mmw-black { --mm-bar-bg: rgba(17, 16, 12, 0.94); }
 
 /* 分组行：单行横向滚动 */
 .mmw-bottom-cats {
