@@ -216,5 +216,13 @@
   <script src="/js/home-category-nav.js?v=1d3cb729"></script>
   <script src="/js/home-quick-strip.js?v=346c00c8"></script>
   <script src="/js/main.js?v=d82783c1"></script>
+  <script>
+    // Service Worker：重复打开时本地直出页面（秒开），后台静默更新
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function () {});
+      });
+    }
+  </script>
 </body>
 </html>

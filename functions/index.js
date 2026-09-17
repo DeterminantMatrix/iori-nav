@@ -18,6 +18,15 @@ async function getTemplateHtml(env, requestUrl) {
   return cachedTemplateHtml;
 }
 
+// 轻量字符串哈希（FNV-1a）→ ETag：仅用于内容变化检测，无加密需求
+function htmlEtag(content) {
+  let h = 5381;
+  for (let i = 0; i < content.length; i++) {
+    h = ((h << 5) + h + content.charCodeAt(i)) | 0;
+  }
+  return '"' + (h >>> 0).toString(36) + '-' + content.length.toString(36) + '"';
+}
+
 function getThemeClasses(isCustomWallpaper) {
   return isCustomWallpaper ? {
     headerClass: 'bg-transparent border-none shadow-none transition-colors duration-300',
@@ -88,10 +97,24 @@ export async function onRequest(context) {
     cacheDirty = !!cacheDirtyValue;
 
     if (!cacheDirty && cachedHtml) {
+      // ETag 协商缓存：内容未变化时返回 304 空响应，浏览器直接用本地副本秒开
+      const etag = htmlEtag(cachedHtml);
+      if (request.headers.get('if-none-match') === etag) {
+        return new Response(null, {
+          status: 304,
+          headers: {
+            'Content-Type': 'text/html; charset=utf-8',
+            'Cache-Control': isAuthenticated ? 'private, no-store, max-age=0' : 'public, max-age=0, must-revalidate',
+            'ETag': etag,
+            'X-Cache': 'HIT',
+          }
+        });
+      }
       const response = new Response(cachedHtml, {
         headers: {
           'Content-Type': 'text/html; charset=utf-8',
           'Cache-Control': isAuthenticated ? 'private, no-store, max-age=0' : 'public, max-age=0, must-revalidate',
+          'ETag': etag,
           'X-Cache': 'HIT',
         }
       });
@@ -605,10 +628,23 @@ export async function onRequest(context) {
   html = html.replace(/>\s+</g, '><');
 
   // === 17. 返回响应 ===
+  // ETag 协商缓存：内容未变化时返回 304 空响应
+  const etag = htmlEtag(html);
+  if (request.headers.get('if-none-match') === etag) {
+    return new Response(null, {
+      status: 304,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': isAuthenticated ? 'private, no-store, max-age=0' : 'public, max-age=0, must-revalidate',
+        'ETag': etag,
+      }
+    });
+  }
   const response = new Response(html, {
     headers: {
       'Content-Type': 'text/html; charset=utf-8',
       'Cache-Control': isAuthenticated ? 'private, no-store, max-age=0' : 'public, max-age=0, must-revalidate',
+      'ETag': etag,
     }
   });
 
