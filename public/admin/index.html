@@ -7,7 +7,7 @@
   <title>书签管理页面</title>
   <link rel="icon" href="/favicon.svg?v=148aafdf" type="image/svg+xml">
   <link rel="stylesheet" href="/css/admin-layout.css?v=768f9ade" />
-  <link rel="stylesheet" href="/css/admin-forms.css?v=d3e66934" />
+  <link rel="stylesheet" href="/css/admin-forms.css?v=620b108f" />
   <link rel="stylesheet" href="/css/admin-card-options.css?v=32c2dfc2" />
   <link rel="stylesheet" href="/css/admin-preview-shell.css?v=dd018be2" />
   <link rel="stylesheet" href="/css/admin-preview-controls.css?v=2fbbc84e" />
@@ -1767,6 +1767,7 @@
       <span class="modal-close" id="closeBatchPrivacyModal">×</span>
       <h3>更改隐私属性</h3>
       <p class="text-sm text-gray-500 mb-4">设置选中书签的隐私状态：</p>
+      <p class="text-xs text-amber-600 mb-4">设为公开时，会在同一事务中将书签所属的私密分类改为公开；若其上级分类仍为私密，本次批量操作会被拒绝。</p>
       <div class="flex gap-4 justify-center mb-6">
         <label class="flex items-center gap-2 cursor-pointer p-3 border rounded hover:bg-gray-50 flex-1">
           <input type="radio" name="batchPrivacyOption" value="1" class="w-4 h-4 text-blue-600">
@@ -1796,17 +1797,17 @@
   <script src="/js/admin.js?v=99dc278e"></script>
   <script src="/js/admin-categories.js?v=6ee07657"></script>
   <script src="/js/admin-bookmarks.js?v=2c52bc54"></script>
-  <script src="/js/admin-batch.js?v=36616354"></script>
+  <script src="/js/admin-batch.js?v=57a87ebd"></script>
   <script src="/js/wallpaper-defaults.js?v=7eebee6d"></script>
   <script src="/js/admin-settings-defaults.js?v=7ca7cfeb"></script>
-  <script src="/js/admin-settings-form.js?v=ade08527"></script>
+  <script src="/js/admin-settings-form.js?v=fa585ce4"></script>
   <script src="/js/admin-settings-core.js?v=d7a2d93f"></script>
   <script src="/js/admin-settings-preview-shared.js?v=f036607b"></script>
   <script src="/js/admin-settings-preview-data.js?v=649b33cc"></script>
   <script src="/js/admin-settings-preview-nav.js?v=2fb2b1ca"></script>
   <script src="/js/admin-settings-preview-animation.js?v=f69111b6"></script>
   <script src="/js/admin-settings-preview-render.js?v=c4dabbd4"></script>
-  <script src="/js/admin-settings-preview-controls.js?v=f24b2876"></script>
+  <script src="/js/admin-settings-preview-controls.js?v=88b618c8"></script>
   <script src="/js/admin-settings-preview.js?v=20153112"></script>
   <script src="/js/admin-settings-wallpaper.js?v=e7168e1d"></script>
   <script src="/js/admin-settings-ai.js?v=cc131031"></script>
