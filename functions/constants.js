@@ -18,10 +18,11 @@
  */
 
 // 数据库 Schema 版本 - 修改此值会触发迁移
-export const SCHEMA_VERSION = 'v6';
+// v7：新增分类防环触发器，UPDATE 只监听 parent_id
+export const SCHEMA_VERSION = 'v7';
 
 // 上一个数据库 Schema 版本 - 仅用于首次迁移成功后 best-effort 清理旧迁移标记
-export const PREVIOUS_SCHEMA_VERSION = 'v5';
+export const PREVIOUS_SCHEMA_VERSION = 'v6';
 
 // 首页 HTML 缓存版本 - 修改此值会强制刷新首页缓存
 // mmw- 前缀：本 fork 独立缓存键，避免与上游项目共用 KV 时互相污染
