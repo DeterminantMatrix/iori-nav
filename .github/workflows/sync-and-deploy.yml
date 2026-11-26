@@ -24,11 +24,14 @@ jobs:
         run: |
           result=$(gh api repos/${{ github.repository }}/merge-upstream -X POST -f branch=master)
           merge_type=$(echo "$result" | jq -r '.merge_type // "unknown"')
+          if [ "$merge_type" != "none" ]; then
+            git pull --ff-only origin master
+          fi
           echo "merge_type=$merge_type" >> "$GITHUB_OUTPUT"
           echo "Upstream sync result: $merge_type"
 
       - name: Deploy to Cloudflare Pages
-        if: steps.sync.outputs.merge_type != 'none'
+        if: steps.sync.outputs.merge_type != 'none' || github.event_name == 'workflow_dispatch'
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
