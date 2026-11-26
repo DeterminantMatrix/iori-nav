@@ -8,6 +8,7 @@ node_modules/
 wrangler.toml
 test-data.sql
 clear-data.sql
+DEPLOY-INFO.md
 
 # Playwright
 test-results/
